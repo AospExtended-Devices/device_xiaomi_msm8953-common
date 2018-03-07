@@ -324,5 +324,8 @@
      <bool name="config_deviceHasButtonBacklight">true</bool>
      <bool name="config_deviceHasVariableButtonBrightness">false</bool>
 
+     <!-- Doze: should the TYPE_PICK_UP_GESTURE sensor be used as a pulse signal. -->
+    <bool name="config_dozePulsePickup">true</bool>
+
 </resources>
 
