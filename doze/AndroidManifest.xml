@@ -30,10 +30,10 @@
 
         <activity
             android:name=".DozeSettingsActivity"
-            android:label="@string/ambient_display_title"
+            android:label="@string/ambient_display_gestures_title"
             android:theme="@style/Theme.Main">
             <intent-filter>
-            <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.category"
