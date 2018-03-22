@@ -313,8 +313,8 @@
      <integer name="config_deviceHardwareKeys">83</integer>
      
      <!-- Button Backlight -->
-     <bool name="config_deviceHasButtonBacklight">true</bool>
-     <bool name="config_deviceHasVariableButtonBrightness">false</bool>
+     <bool name="config_button_brightness_support">true</bool>
 
 </resources>
+
 
