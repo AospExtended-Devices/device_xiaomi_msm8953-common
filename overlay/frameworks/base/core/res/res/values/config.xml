@@ -321,11 +321,11 @@
      <integer name="config_deviceHardwareKeys">83</integer>
      
      <!-- Button Backlight -->
-     <bool name="config_deviceHasButtonBacklight">true</bool>
-     <bool name="config_deviceHasVariableButtonBrightness">false</bool>
+     <bool name="config_button_brightness_support">true</bool>
 
      <!-- Doze: should the TYPE_PICK_UP_GESTURE sensor be used as a pulse signal. -->
     <bool name="config_dozePulsePickup">true</bool>
 
 </resources>
+
 
