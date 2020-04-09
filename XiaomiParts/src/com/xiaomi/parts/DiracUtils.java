@@ -3,26 +3,75 @@ package com.xiaomi.parts;
 
 import java.lang.IllegalArgumentException;
 import android.content.Context;
+import android.util.Log;
+import android.util.Pair;
+import java.util.List;
+import java.util.*;
 
 public final class DiracUtils {
 
 public DiracSound mDiracSound;
-public static DiracUtils mInstance;
-public Context mContext;
+private boolean mInitialized;
 
-    public static DiracUtils getInstance() {
-        if (mInstance == null) {
-            throw new IllegalArgumentException("Trying to get instance without initializing!");
-        }
-        return mInstance;
+     public boolean hasInitialized()
+  {
+    return mInitialized;
+  }
+
+  public void initialize()
+  {
+    boolean enabled;
+    int iEnabled;
+    if (!mInitialized)
+    {
+      mInitialized = true;
+      mDiracSound = new DiracSound(0, 0);
+      iEnabled = mDiracSound.getMusic();
+      if (iEnabled == 1) {
+        enabled = true;
+      }else {
+        enabled = false;
+      }
+      mDiracSound.setEnabled(enabled);
     }
+  }
 
-
-    public DiracUtils(final Context context) {
-    mContext = context;
-        mDiracSound = new DiracSound(0, 0);
+    public boolean isDiracEnabled(Context paramContext)
+  {
+    int i =1;
+    int j = 0;
+    j = mDiracSound.getMusic();
+    if (i == j)
+    {
+      return true;
+    } else {
+      return false;
     }
+  }
 
+   public void release()
+  {
+    if (mInitialized)
+    {
+      mDiracSound.release();
+      mDiracSound = null;
+      mInitialized = false;
+    }
+  }
+
+   public void setEnabled(Context paramContext, boolean paramBoolean)
+  {
+    int i = 1;
+    if (paramBoolean)
+    {
+      i = 1;
+    } else {
+      i = 0;
+    }
+    mAudEnhncr.setEnabled(paramBoolean);
+    mAudEnhncr.setMusic(i);
+    return;
+  }
 
    public void onBootCompleted() {
         setEnabled(mDiracSound.getMusic() == 1);
@@ -30,14 +79,7 @@ public Context mContext;
         setLevel(getLevel());
     }
 
-   public  void setEnabled(boolean enable) {
-        mDiracSound.setEnabled(enable);
-        mDiracSound.setMusic(enable ? 1 : 0);
-    }
 
-    public boolean isDiracEnabled() {
-        return mDiracSound.getMusic() == 1;
-    }
 
     private String getLevel() {
         StringBuilder selected = new StringBuilder();

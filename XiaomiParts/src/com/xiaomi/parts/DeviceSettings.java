@@ -43,34 +43,26 @@ public class DeviceSettings extends PreferenceFragment implements
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.xiaomiparts_preferences, rootKey);
+	setPreferencesFromResource(R.xml.xiaomiparts_preferences, rootKey);
+	mContext = getActivity();
 
         //CustomSeekBarPreference torch_brightness = (CustomSeekBarPreference) findPreference(PREF_TORCH_BRIGHTNESS);
         //torch_brightness.setEnabled(FileUtils.fileWritable(TORCH_1_BRIGHTNESS_PATH) &&
         //        FileUtils.fileWritable(TORCH_2_BRIGHTNESS_PATH));
         //torch_brightness.setOnPreferenceChangeListener(this);
 
-        boolean enhancerEnabled;
-        try {
-            enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
-        } catch (java.lang.NullPointerException e) {
-            getContext().startService(new Intent(getContext(), DiracService.class));
-            try {
-                enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
-            } catch (NullPointerException ne) {
-                // Avoid crash
-                ne.printStackTrace();
-                enhancerEnabled = false;
-            }
-        }
 
         SecureSettingSwitchPreference enableDirac = (SecureSettingSwitchPreference) findPreference(PREF_ENABLE_DIRAC);
-        enableDirac.setOnPreferenceChangeListener(this);
-        enableDirac.setChecked(enhancerEnabled);
+	if (DiracService.sDiracUtils.hasInitialized()) {
+	    enableDirac.setOnPreferenceChangeListener(this);
+            enableDirac.setChecked(enhancerEnabled);
+        }
+
 
         SecureSettingListPreference headsetType = (SecureSettingListPreference) findPreference(PREF_HEADSET);
-        headsetType.setOnPreferenceChangeListener(this);
-
+	if (DiracService.sDiracUtils.hasInitialized()) {
+	    headsetType.setOnPreferenceChangeListener(this);
+        }
         SecureSettingListPreference preset = (SecureSettingListPreference) findPreference(PREF_PRESET);
         preset.setOnPreferenceChangeListener(this);
 

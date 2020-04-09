@@ -9,7 +9,7 @@ public class DiracService extends Service {
 
     private final String TAG = this.getClass().getName();
 
-    static DiracUtils sDiracUtils;
+    public static DiracUtils sDiracUtils;
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -18,7 +18,8 @@ public class DiracService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        sDiracUtils = new DiracUtils(getApplicationContext());
+        sDiracUtils = new DiracUtils();
+	sDiracUtils.initialize();
         sDiracUtils.onBootCompleted();
         Log.d(TAG, "Service started");
         return START_STICKY;

@@ -10,17 +10,13 @@ import com.xiaomi.parts.R;
 
 public class DiracTileService extends TileService {
 
-    public DiracUtils mDiracUtils;
 
     @Override
     public void onStartListening() {
 
-        mDiracUtils = new DiracUtils(getApplicationContext());
-
-        boolean enhancerEnabled = mDiracUtils.isDiracEnabled();
-
         Tile tile = getQsTile();
-        if (enhancerEnabled) {
+        if (DiracService.sDiracUtils.hasInitialized() && 
+            DiracService.sDiracUtils.isDiracEnabled(getApplicationContext())) {
             tile.setState(Tile.STATE_ACTIVE);
         } else {
             tile.setState(Tile.STATE_INACTIVE);
@@ -33,12 +29,14 @@ public class DiracTileService extends TileService {
 
     @Override
     public void onClick() {
+	if (!DiracService.sDiracUtils.hasInitialized())
+            return;
         Tile tile = getQsTile();
-        if (mDiracUtils.isDiracEnabled()) {
-            mDiracUtils.setEnabled(false);
+        if (DiracService.sDiracUtils.isDiracEnabled(getApplicationContext())) {
+            DiracService.sDiracUtils.setEnabled(getApplicationContext(),false);
             tile.setState(Tile.STATE_INACTIVE);
         } else {
-            mDiracUtils.setEnabled(true);
+            DiracService.sDiracUtils.setEnabled(getApplicationContext(),true);
             tile.setState(Tile.STATE_ACTIVE);
         }
         tile.updateTile();
