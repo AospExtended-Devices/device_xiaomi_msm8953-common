@@ -1,2 +1,3 @@
 # Dirac
 persist.audio.dirac.                                          u:object_r:dirac_prop:s0
+ro.product.system.manufacturer u:object_r:exported2_default_prop:s0 exact string
