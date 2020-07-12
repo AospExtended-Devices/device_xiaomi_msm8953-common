@@ -64,4 +64,5 @@ void vendor_load_properties()
     property_set("dalvik.vm.heaptargetutilization", "0.75");
     property_set("dalvik.vm.heapminfree", heapminfree);
     property_set("dalvik.vm.heapmaxfree", "8m");
+    property_override_dual("ro.control_privapp_permissions", "ro.control_privapp_permissions", "log");
 }
