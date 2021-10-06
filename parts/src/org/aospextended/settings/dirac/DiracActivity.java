@@ -18,9 +18,11 @@
 package org.aospextended.settings.dirac;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 
-public class DiracActivity extends PreferenceActivity {
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
+import com.android.settingslib.collapsingtoolbar.R;
+
+public class DiracActivity extends CollapsingToolbarBaseActivity {
 
     private static final String TAG_DIRAC = "dirac";
 
@@ -28,7 +30,7 @@ public class DiracActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction().replace(android.R.id.content,
+        getFragmentManager().beginTransaction().replace(R.id.content_frame,
                 new DiracSettingsFragment(), TAG_DIRAC).commit();
     }
 }
