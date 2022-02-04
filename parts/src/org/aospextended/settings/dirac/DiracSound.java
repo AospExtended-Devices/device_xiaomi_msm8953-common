@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 The LineageOS Project
+ * Copyright (C) 2022 AospExtended ROM Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.dirac;
+package org.aospextended.settings.dirac;
 
 import android.media.audiofx.AudioEffect;
 
