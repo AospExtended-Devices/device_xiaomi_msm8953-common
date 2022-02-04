@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "proprietary_vendor_xiaomi-tissot",
+    "target_path": "vendor/xiaomi"
+  }
+]
